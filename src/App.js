@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Header from './components/Header';
-import MainPage from './pages/Main';
-import SearchPage from './pages/Search';
-import SearchForm from './components/SearchForm';
-import DetailsPage from './pages/Details';
-import WatchListPage from './pages/WatchList';
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header";
+import MainPage from "./pages/Main";
+import SearchPage from "./pages/Search";
+import SearchForm from "./components/SearchForm";
+import DetailsPage from "./pages/Details";
+import WatchListPage from "./pages/WatchList";
+import ProviderList from "./components/ProviderList/ProviderList";
 
 function App() {
   const [watchList, setWatchList] = useState(
-    JSON.parse(localStorage.getItem('watch list')) || []
+    JSON.parse(localStorage.getItem("watch list")) || []
   );
 
   useEffect(() => {
-    localStorage.setItem('watch list', JSON.stringify(watchList));
+    localStorage.setItem("watch list", JSON.stringify(watchList));
   }, [watchList]);
 
   const handleToggle = (titleToToggle) => {
@@ -50,6 +51,7 @@ function App() {
             <WatchListPage watchList={watchList} toggle={handleToggle} />
           }
         />
+        <Route path="/providers" element={<ProviderList />} />
       </Routes>
     </Router>
   );

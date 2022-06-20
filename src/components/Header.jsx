@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Header = (props) => {
   return (
     <header className="header">
@@ -13,6 +14,11 @@ const Header = (props) => {
           <ul>
             <li>
               <a href="/my-watch-list">Watch List</a>
+            </li>
+            <li>
+              <Link to="/providers" className={"providersButton"}>
+                Providers
+              </Link>
             </li>
           </ul>
         </nav>

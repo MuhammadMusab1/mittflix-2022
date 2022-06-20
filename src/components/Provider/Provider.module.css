@@ -1,0 +1,54 @@
+.provider {
+  overflow: hidden;
+  min-width: 200px;
+  position: relative;
+}
+
+.provider img {
+  width: 100%;
+  display: block;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.provider .overlay {
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, rgba(0, 0, 0, 0.75)),
+    to(transparent)
+  );
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent);
+  padding: 20px;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.125s ease;
+  transition: opacity 0.125s ease;
+}
+
+.provider .overlay .title {
+  font-size: 22px;
+  font-weight: 600;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.provider:hover img {
+  -webkit-transform: scale(1.25);
+  transform: scale(1.25);
+}
+
+.provider:hover .overlay {
+  opacity: 1;
+  pointer-events: all;
+}
+.provider:hover .title {
+  opacity: 1;
+}
