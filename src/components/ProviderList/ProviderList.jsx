@@ -1,7 +1,7 @@
 import Provider from "../Provider/Provider";
 import styles from "../ProviderList/ProviderList.module.css";
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { getProviders } from "../../services/tmdb-api";
 import Pagination from "../Pagination/Pagination";
 import ProviderShows from "../../pages/ProviderShows";

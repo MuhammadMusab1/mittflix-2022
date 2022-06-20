@@ -36,8 +36,24 @@ export const searchShows = async (query) => {
     `?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`;
   const request = await fetch(URL);
   const response = await request.json();
-  const shows = await response.results;
-  return shows;
+  const data = {
+    pages: await response.total_pages,
+    results: await response.results,
+  };
+  return data;
+};
+export const searchShowsViaPages = async (query, page) => {
+  const URL =
+    BASE_URL +
+    searchEndpoint +
+    `?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`;
+  const request = await fetch(URL);
+  const response = await request.json();
+  const data = {
+    pages: await response.total_pages,
+    results: await response.results,
+  };
+  return data;
 };
 
 export const getShowDetails = async (id) => {
