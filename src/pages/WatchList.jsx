@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import TitleList from '../components/TitleList';
+import { useState, useEffect } from "react";
+import TitleList from "../components/TitleList";
 
 const WatchListPage = ({ watchList, toggle }) => {
   let titles = watchList;
@@ -7,7 +7,12 @@ const WatchListPage = ({ watchList, toggle }) => {
   return (
     <>
       {titles ? (
-        <TitleList titles={titles} watchList={watchList} toggle={toggle} />
+        <TitleList
+          titles={titles}
+          watchList={watchList}
+          toggle={toggle}
+          name="My Watch List"
+        />
       ) : (
         <h2>Loading...</h2>
       )}

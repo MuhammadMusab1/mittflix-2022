@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from "./components/Header";
 import MainPage from "./pages/Main";
@@ -8,6 +9,7 @@ import SearchForm from "./components/SearchForm";
 import DetailsPage from "./pages/Details";
 import WatchListPage from "./pages/WatchList";
 import ProviderList from "./components/ProviderList/ProviderList";
+import ProviderShows from "./pages/ProviderShows";
 
 function App() {
   const [watchList, setWatchList] = useState(
@@ -51,7 +53,10 @@ function App() {
             <WatchListPage watchList={watchList} toggle={handleToggle} />
           }
         />
-        <Route path="/providers" element={<ProviderList />} />
+        <Route
+          path="/providers"
+          element={<ProviderList watchList={watchList} toggle={handleToggle} />}
+        />
       </Routes>
     </Router>
   );
