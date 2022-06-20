@@ -11,13 +11,20 @@ const ProviderShows = ({ providerId, providers, watchList, toggle }) => {
     (provider) => provider.provider_id === +providerId
   );
   return (
-    <TitleList
-      name={provider ? provider.provider_name : provider}
-      providerId={providerId}
-      titles={shows}
-      watchList={watchList}
-      toggle={toggle}
-    />
+    <>
+      <TitleList
+        name={provider ? provider.provider_name : provider}
+        providerId={providerId}
+        titles={shows}
+        watchList={watchList}
+        toggle={toggle}
+      />
+      {shows.length === 0 && (
+        <h2>
+          No shows found for {provider ? provider.provider_name : providerId}
+        </h2>
+      )}
+    </>
   );
 };
 
