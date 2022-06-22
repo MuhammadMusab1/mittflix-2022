@@ -44,6 +44,7 @@ const SearchPage = ({ watchList, toggle }) => {
             paginate={paginate}
             totalItems={totalPages}
             searchQuery={query}
+            page={page}
           />
         </>
       ) : (
