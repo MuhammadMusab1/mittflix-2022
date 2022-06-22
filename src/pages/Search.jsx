@@ -18,8 +18,10 @@ const SearchPage = ({ watchList, toggle }) => {
         setTitles(data.results);
         setTotalPages(data.pages);
       });
-      if (page) {
+      if (Number.isInteger(+page) && +page > 0) {
         paginate(page, query);
+      } else {
+        navigate(`/search?query=${query}&page=1`);
       }
     }
   }, [query]);
@@ -29,23 +31,31 @@ const SearchPage = ({ watchList, toggle }) => {
       setTotalPages(data.pages);
     });
   };
-
   return (
     <>
       {titles ? (
         <>
           <TitleList
-            name={`shows matching your search: "${query}"`}
+            name={
+              +page === totalPages
+                ? "End of Results"
+                : `shows matching your search: "${query}"`
+            }
             titles={titles}
             watchList={watchList}
             toggle={toggle}
           />
-          <PaginationForSearch
-            paginate={paginate}
-            totalItems={totalPages}
-            searchQuery={query}
-            page={page}
-          />
+          {titles.length === 0 && (
+            <h2>{`No results found for page: ${page}!!`}</h2>
+          )}
+          {titles.length >= 20 && (
+            <PaginationForSearch
+              paginate={paginate}
+              totalItems={totalPages}
+              searchQuery={query}
+              page={page}
+            />
+          )}
         </>
       ) : (
         <h2>No matching results</h2>
