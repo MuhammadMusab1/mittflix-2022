@@ -10,12 +10,15 @@ const PaginationForSearch = ({ totalItems, paginate, query }) => {
     <ul className="pagination">
       {pageNumber.map((number) => {
         return (
-          <li key={number} className="page-item">
-            <Link
-              to="#"
-              onClick={() => paginate(number, query)}
-              className="page-link"
-            >
+          <li
+            key={number}
+            className="page-item"
+            onClick={() => {
+              paginate(number, query);
+              navigate(`/search?query=${query}&page=${number}`);
+            }}
+          >
+            <Link to="#" className="page-link">
               {number}
             </Link>
           </li>

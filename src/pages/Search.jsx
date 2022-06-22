@@ -10,28 +10,24 @@ const SearchPage = ({ watchList, toggle }) => {
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const query = params.get("query");
+  const page = params.get("page");
   const [totalPages, setTotalPages] = useState(0);
-  const [searchQuery, setSearchQuery] = useState();
-  const [currentPage, setCurrentPage] = useState(null);
   useEffect(() => {
     if (query) {
-      setSearchQuery(query);
       searchShows(query).then((data) => {
         setTitles(data.results);
         setTotalPages(data.pages);
       });
+      if (page) {
+        paginate(page, query);
+      }
     }
   }, [query]);
-  useEffect(() => {
-    console.log("page changed");
-    searchShowsViaPages(searchQuery, currentPage).then((data) => {
+  const paginate = (pageNumber, urlQuery) => {
+    searchShowsViaPages(urlQuery, pageNumber).then((data) => {
       setTitles(data.results);
       setTotalPages(data.pages);
     });
-  }, [currentPage]);
-  const paginate = (pageNumber, urlQuery) => {
-    setCurrentPage(pageNumber);
-    // navigate(`/search?query=${urlQuery}&page=${pageNumber}`); doesn't navigate
   };
 
   return (
@@ -39,7 +35,7 @@ const SearchPage = ({ watchList, toggle }) => {
       {titles ? (
         <>
           <TitleList
-            name={`shows matching your search: "${searchQuery}"`}
+            name={`shows matching your search: "${query}"`}
             titles={titles}
             watchList={watchList}
             toggle={toggle}
@@ -47,7 +43,7 @@ const SearchPage = ({ watchList, toggle }) => {
           <PaginationForSearch
             paginate={paginate}
             totalItems={totalPages}
-            query={searchQuery}
+            query={query}
           />
         </>
       ) : (
