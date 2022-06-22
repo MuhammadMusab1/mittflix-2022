@@ -43,7 +43,7 @@ const SearchPage = ({ watchList, toggle }) => {
           <PaginationForSearch
             paginate={paginate}
             totalItems={totalPages}
-            query={query}
+            searchQuery={query}
           />
         </>
       ) : (
