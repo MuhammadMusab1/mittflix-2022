@@ -30,7 +30,7 @@ const PaginationForSearch = ({ totalItems, paginate, searchQuery, page }) => {
 
   return (
     <ul className="pagination">
-      {page > 1 && (
+      {currentPage > 1 && (
         <li className="page-item">
           <Link to="#" className="page-link" onClick={handlePreviousClick}>
             Previous
@@ -39,10 +39,10 @@ const PaginationForSearch = ({ totalItems, paginate, searchQuery, page }) => {
       )}
       <li className="page-item">
         <Link to="#" className="page-link">
-          {page}
+          {currentPage}
         </Link>
       </li>
-      {page < totalItems && (
+      {currentPage < totalItems && (
         <li className="page-item" onClick={handleNextClick}>
           <Link to="#" className="page-link">
             Next
